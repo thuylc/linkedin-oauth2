@@ -1,42 +1,42 @@
 require "oauth2"
 
-require "linked_in/errors"
-require "linked_in/raise_error"
-require "linked_in/version"
-require "linked_in/configuration"
+require "linked_in_oauth2/errors"
+require "linked_in_oauth2/raise_error"
+require "linked_in_oauth2/version"
+require "linked_in_oauth2/configuration"
 
 # Responsible for all authentication
 # LinkedIn::OAuth2 inherits from OAuth2::Client
-require "linked_in/oauth2"
+require "linked_in_oauth2/oauth2"
 
 # Coerces LinkedIn JSON to a nice Ruby hash
 # LinkedIn::Mash inherits from Hashie::Mash
 require "hashie"
-require "linked_in/mash"
+require "linked_in_oauth2/mash"
 
 # Wraps a LinkedIn-specifc API connection
 # LinkedIn::Connection inherits from Faraday::Connection
 require "faraday"
-require "linked_in/connection"
+require "linked_in_oauth2/connection"
 
 # Data object to wrap API access token
-require "linked_in/access_token"
+require "linked_in_oauth2/access_token"
 
 # Endpoints inherit from APIResource
-require "linked_in/api_resource"
+require "linked_in_oauth2/api_resource"
 
 # All of the endpoints
-require "linked_in/jobs"
-require "linked_in/people"
-require "linked_in/search"
-require "linked_in/groups"
-require "linked_in/companies"
-require "linked_in/communications"
-require "linked_in/share_and_social_stream"
+require "linked_in_oauth2/jobs"
+require "linked_in_oauth2/people"
+require "linked_in_oauth2/search"
+require "linked_in_oauth2/groups"
+require "linked_in_oauth2/companies"
+require "linked_in_oauth2/communications"
+require "linked_in_oauth2/share_and_social_stream"
 
 # The primary API object that makes requests.
 # It composes in all of the endpoints
-require "linked_in/api"
+require "linked_in_oauth2/api"
 
 module LinkedIn
   @config = Configuration.new
