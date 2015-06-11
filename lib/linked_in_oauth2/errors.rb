@@ -34,9 +34,9 @@ module LinkedInOauth2
 
     @no_auth_code = "You must provide the authorization code passed to your redirect uri in the url params"
 
-    @no_access_token = "You must have an access token to use LinkedIn's API. Use the LinkedIn::OAuth2 module to obtain an access token"
+    @no_access_token = "You must have an access token to use LinkedIn's API. Use the LinkedInOauth2::OAuth2 module to obtain an access token"
 
-    @credentials_missing = "Client credentials do not exist. Please either pass your client_id and client_secret to the LinkedIn::Oauth.new constructor or set them via LinkedIn.configure"
+    @credentials_missing = "Client credentials do not exist. Please either pass your client_id and client_secret to the LinkedInOauth2::Oauth.new constructor or set them via LinkedIn.configure"
 
     @redirect_uri_mismatch = "Throttle limit for calls to this resource is reached"
     

@@ -26,7 +26,7 @@ module LinkedInOauth2
     # @see http://developer.linkedin.com/documents/job-bookmarks-and-suggestions
     #
     # @macro profile_options
-    # @return [LinkedIn::Mash]
+    # @return [LinkedInOauth2::Mash]
     def group_suggestions(options = {})
       path = "#{profile_path(options)}/suggestions/groups"
       get(path, options)
@@ -39,7 +39,7 @@ module LinkedInOauth2
     # @see http://developer.linkedin.com/documents/groups-api
     #
     # @macro profile_options
-    # @return [LinkedIn::Mash]
+    # @return [LinkedInOauth2::Mash]
     def group_memberships(options = {})
       path = "#{profile_path(options)}/group-memberships"
       get(path, options)
@@ -53,7 +53,7 @@ module LinkedInOauth2
     #
     # @param [Hash] options identifies the group or groups
     # @optio options [String] :id identifier for the group
-    # @return [LinkedIn::Mash]
+    # @return [LinkedInOauth2::Mash]
     def group_profile(options)
       path = group_path(options)
       get(path, options)
@@ -69,7 +69,7 @@ module LinkedInOauth2
     # @optio options [String] :id identifier for the group
     # @optio options [String] :count
     # @optio options [String] :start
-    # @return [LinkedIn::Mash]
+    # @return [LinkedInOauth2::Mash]
     def group_posts(options)
       path = "#{group_path(options)}/posts"
       get(path, options)

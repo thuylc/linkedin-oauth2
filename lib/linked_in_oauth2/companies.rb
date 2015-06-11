@@ -23,7 +23,7 @@ module LinkedInOauth2
     # @option options [String] :type
     # @option options [String] :count
     # @option options [String] :start
-    # @return [LinkedIn::Mash]
+    # @return [LinkedInOauth2::Mash]
     def company(options = {})
       path = company_path(options)
       get(path, options)
@@ -38,7 +38,7 @@ module LinkedInOauth2
     # @option options [String] :type
     # @option options [String] :count
     # @option options [String] :start
-    # @return [LinkedIn::Mash]
+    # @return [LinkedInOauth2::Mash]
     def company_search(options = {})
       path = "/company-search:(companies:(id,name,universal-name,website-url,logo-url,square_logo_url))?keywords=#{CGI.escape(options[:keyword])}&sort=relevance"
       # binding.pry
@@ -54,7 +54,7 @@ module LinkedInOauth2
     # @option options [String] :event-type
     # @option options [String] :count
     # @option options [String] :start
-    # @return [LinkedIn::Mash]
+    # @return [LinkedInOauth2::Mash]
     def company_updates(options={})
       path = "#{company_path(options)}/updates"
       get(path, options)
@@ -67,7 +67,7 @@ module LinkedInOauth2
     # @see http://developer.linkedin.com/documents/company-statistics
     #
     # @macro company_path_options
-    # @return [LinkedIn::Mash]
+    # @return [LinkedInOauth2::Mash]
     def company_statistics(options={})
       path = "#{company_path(options)}/company-statistics"
       get(path, options)
@@ -83,7 +83,7 @@ module LinkedInOauth2
     # @option options [String] :start-timestamp
     # @option options [String] :end-timestamp
     # @option options [String] :time-granularity
-    # @return [LinkedIn::Mash]
+    # @return [LinkedInOauth2::Mash]
     def company_historical_follow_statistics(options = {})
       path = "#{company_path(options)}/historical-follow-statistics"
       get(path, options)
@@ -101,7 +101,7 @@ module LinkedInOauth2
     # @option options [String] :time-granularity
     # @option options [String] :update-key
     # @option options [Array]  :fields
-    # @return [LinkedIn::Mash]
+    # @return [LinkedInOauth2::Mash]
     def company_historical_status_update_statistics(options = {})
       path = "#{company_path(options)}/historical-status-update-statistics"
       get(path, options)
@@ -114,7 +114,7 @@ module LinkedInOauth2
     # @param [String] update_key a update/update-key representing a
     #   particular company update
     # @macro company_path_options
-    # @return [LinkedIn::Mash]
+    # @return [LinkedInOauth2::Mash]
     def company_updates_comments(update_key, options={})
       path = "#{company_path(options)}/updates/key=#{update_key}/update-comments"
       get(path, options)
@@ -127,7 +127,7 @@ module LinkedInOauth2
     # @param [String] update_key a update/update-key representing a
     #   particular company update
     # @macro company_path_options
-    # @return [LinkedIn::Mash]
+    # @return [LinkedInOauth2::Mash]
     def company_updates_likes(update_key, options={})
       path = "#{company_path(options)}/updates/key=#{update_key}/likes"
       get(path, options)

@@ -1,12 +1,12 @@
-describe LinkedIn::People do
+describe LinkedInOauth2::People do
   let(:uid) {"SDmkCxL2ya"}
   let(:url) {"http://www.linkedin.com/in/evanmorikawa"}
   let(:access_token) {"dummy_access_token"}
 
-  let(:api) {LinkedIn::API.new(access_token)}
+  let(:api) {LinkedInOauth2::API.new(access_token)}
 
   def verify(result)
-    expect(result).to be_kind_of LinkedIn::Mash
+    expect(result).to be_kind_of LinkedInOauth2::Mash
   end
 
   ###### PROFILES
@@ -64,8 +64,8 @@ describe LinkedIn::People do
     expect{api.profile("Bad input")}.to raise_error
   end
   it "errors on email deprecation" do
-    msg = LinkedIn::ErrorMessages.deprecated
-    expect{api.profile(email: "email@email.com")}.to raise_error(LinkedIn::Deprecated, msg)
+    msg = LinkedInOauth2::ErrorMessages.deprecated
+    expect{api.profile(email: "email@email.com")}.to raise_error(LinkedInOauth2::Deprecated, msg)
   end
 
   # Fields

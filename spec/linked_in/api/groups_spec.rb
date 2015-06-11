@@ -1,8 +1,8 @@
 require "spec_helper"
 
-describe LinkedIn::Groups do
+describe LinkedInOauth2::Groups do
   let(:access_token) {"dummy_access_token"}
-  let(:api) {LinkedIn::API.new(access_token)}
+  let(:api) {LinkedInOauth2::API.new(access_token)}
 
   def stub(url)
     url += "oauth2_access_token=#{access_token}"
@@ -11,12 +11,12 @@ describe LinkedIn::Groups do
 
   it "should be able to list group memberships for a profile" do
     stub("https://api.linkedin.com/v1/people/~/group-memberships?")
-    expect(api.group_memberships).to be_an_instance_of(LinkedIn::Mash)
+    expect(api.group_memberships).to be_an_instance_of(LinkedInOauth2::Mash)
   end
 
   it "should be able to list suggested groups for a profile" do
     stub("https://api.linkedin.com/v1/people/~/suggestions/groups?")
-    expect(api.group_suggestions).to be_an_instance_of(LinkedIn::Mash)
+    expect(api.group_suggestions).to be_an_instance_of(LinkedInOauth2::Mash)
   end
 
   it "should be able to parse nested fields" do
@@ -25,7 +25,7 @@ describe LinkedIn::Groups do
                                                    "name",
                                                    "small-logo-url",
                                                    "short-description"]}])
-          ).to be_an_instance_of(LinkedIn::Mash)
+          ).to be_an_instance_of(LinkedInOauth2::Mash)
   end
 
   it "should be able to join a group" do
@@ -38,12 +38,12 @@ describe LinkedIn::Groups do
 
   it "should be able to list a group profile" do
     stub("https://api.linkedin.com/v1/groups/123?")
-    expect(api.group_profile(:id => 123)).to be_an_instance_of(LinkedIn::Mash)
+    expect(api.group_profile(:id => 123)).to be_an_instance_of(LinkedInOauth2::Mash)
   end
 
   it "should be able to list group posts" do
     stub("https://api.linkedin.com/v1/groups/123/posts?")
-    expect(api.group_posts(:id => 123)).to be_an_instance_of(LinkedIn::Mash)
+    expect(api.group_posts(:id => 123)).to be_an_instance_of(LinkedInOauth2::Mash)
   end
 
   it "should be able to share a new group status" do

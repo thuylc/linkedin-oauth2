@@ -1,4 +1,4 @@
-describe LinkedIn::Connection do
+describe LinkedInOauth2::Connection do
   it "inherits from Faraday::Connection" do
     expect(subject).to be_kind_of Faraday::Connection
   end

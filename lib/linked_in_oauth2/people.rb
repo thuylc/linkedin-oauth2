@@ -24,7 +24,7 @@ module LinkedInOauth2
     #     Fetches the profile of another user
     #     @param [Hash] opts profile options
     #     @macro profile_options
-    #   @return [LinkedIn::Mash]
+    #   @return [LinkedInOauth2::Mash]
 
     # Retrieve a member's LinkedIn profile.
     #
@@ -64,7 +64,7 @@ module LinkedInOauth2
     #   connections
     # @param [Hash] opts profile options
     # @macro profile_options
-    # @return [LinkedIn::Mash]
+    # @return [LinkedInOauth2::Mash]
     def new_connections(since, options={})
       since = parse_modified_since(since)
       options.merge!('modified' => 'new', 'modified-since' => since)

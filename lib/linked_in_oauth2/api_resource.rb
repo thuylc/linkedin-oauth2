@@ -62,7 +62,7 @@ module LinkedInOauth2
     end
 
     def deprecated
-      LinkedIn::Deprecated.new(LinkedIn::ErrorMessages.deprecated)
+      LinkedInOauth2::Deprecated.new(LinkedInOauth2::ErrorMessages.deprecated)
     end
 
     private ##############################################################
@@ -92,7 +92,7 @@ module LinkedInOauth2
     end
 
     def generate_field_selectors(options)
-      default = LinkedIn.config.default_profile_fields || {}
+      default = LinkedInOauth2.config.default_profile_fields || {}
       fields = options.delete(:fields) || default
 
       if options.delete(:public)

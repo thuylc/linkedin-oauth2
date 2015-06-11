@@ -6,16 +6,16 @@ require "linked_in_oauth2/version"
 require "linked_in_oauth2/configuration"
 
 # Responsible for all authentication
-# LinkedIn::OAuth2 inherits from OAuth2::Client
+# LinkedInOauth2::OAuth2 inherits from OAuth2::Client
 require "linked_in_oauth2/oauth2"
 
 # Coerces LinkedIn JSON to a nice Ruby hash
-# LinkedIn::Mash inherits from Hashie::Mash
+# LinkedInOauth2::Mash inherits from Hashie::Mash
 require "hashie"
 require "linked_in_oauth2/mash"
 
 # Wraps a LinkedIn-specifc API connection
-# LinkedIn::Connection inherits from Faraday::Connection
+# LinkedInOauth2::Connection inherits from Faraday::Connection
 require "faraday"
 require "linked_in_oauth2/connection"
 

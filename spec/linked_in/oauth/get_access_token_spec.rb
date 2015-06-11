@@ -13,19 +13,19 @@ describe "Get OAuth2 Access Token" do
       config.redirect_uri  = redirect_uri
     end
   end
-  subject { LinkedIn::OAuth2.new }
+  subject { LinkedInOauth2::OAuth2.new }
 
   shared_examples "Success Access Token Fetch" do |*args|
     it "Returns an access token object" do
       VCR.use_cassette("access token success") do
-        expect(subject.get_access_token(*args)).to be_kind_of LinkedIn::AccessToken
+        expect(subject.get_access_token(*args)).to be_kind_of LinkedInOauth2::AccessToken
       end
     end
 
     it "Sets the AcessToken object" do
       VCR.use_cassette("access token success") do
         subject.get_access_token(*args)
-        expect(subject.access_token).to be_kind_of LinkedIn::AccessToken
+        expect(subject.access_token).to be_kind_of LinkedInOauth2::AccessToken
       end
     end
 
@@ -39,7 +39,7 @@ describe "Get OAuth2 Access Token" do
 
   shared_examples "Raises InvalidRequest" do |*args|
     it "Raises InvalidRequest" do
-      expect{subject.get_access_token(*args)}.to raise_error(LinkedIn::InvalidRequest, msg)
+      expect{subject.get_access_token(*args)}.to raise_error(LinkedInOauth2::InvalidRequest, msg)
     end
 
     it "Has no AccessToken object set" do
@@ -52,7 +52,7 @@ describe "Get OAuth2 Access Token" do
   end
 
   context "When no code is given" do
-    let(:msg) {LinkedIn::ErrorMessages.no_auth_code}
+    let(:msg) {LinkedInOauth2::ErrorMessages.no_auth_code}
     include_examples "Raises InvalidRequest"
   end
 
@@ -60,7 +60,7 @@ describe "Get OAuth2 Access Token" do
     before(:example) do
       LinkedIn.configure { |config| config.redirect_uri = nil }
     end
-    let(:msg) {LinkedIn::ErrorMessages.redirect_uri}
+    let(:msg) {LinkedInOauth2::ErrorMessages.redirect_uri}
     include_examples "Raises InvalidRequest", code
   end
 
@@ -84,7 +84,7 @@ describe "Get OAuth2 Access Token" do
   end
 
   context "When redirect_uri does not match previous setting" do
-    let(:msg) {LinkedIn::ErrorMessages.redirect_uri_mismatch}
+    let(:msg) {LinkedInOauth2::ErrorMessages.redirect_uri_mismatch}
     include_examples "Raises InvalidRequest", code, {redirect_uri: "different"}
   end
 
@@ -92,7 +92,7 @@ describe "Get OAuth2 Access Token" do
     let(:msg) { /temporarily_unavailable/ }
     it "raises an OAuthError" do
       VCR.use_cassette("unavailable") do
-        expect {subject.get_access_token(code)}.to raise_error(LinkedIn::OAuthError, msg)
+        expect {subject.get_access_token(code)}.to raise_error(LinkedInOauth2::OAuthError, msg)
       end
     end
   end
@@ -101,7 +101,7 @@ describe "Get OAuth2 Access Token" do
     let(:msg) { /invalid_request/ }
     it "raises an OAuthError" do
       VCR.use_cassette("bad code") do
-        expect {subject.get_access_token(code)}.to raise_error(LinkedIn::OAuthError, msg)
+        expect {subject.get_access_token(code)}.to raise_error(LinkedInOauth2::OAuthError, msg)
       end
     end
   end

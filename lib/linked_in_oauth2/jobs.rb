@@ -15,7 +15,7 @@ module LinkedInOauth2
     #
     # @param [Hash] options identifies the job
     # @option options [String] id unique identifier for a job
-    # @return [LinkedIn::Mash]
+    # @return [LinkedInOauth2::Mash]
     def job(options = {})
       path = jobs_path(options)
       get(path, options)
@@ -26,7 +26,7 @@ module LinkedInOauth2
     # @see http://developer.linkedin.com/documents/job-bookmarks-and-suggestions
     #
     # @macro profile_options
-    # @return [LinkedIn::Mash]
+    # @return [LinkedInOauth2::Mash]
     def job_bookmarks(options = {})
       path = "#{profile_path(options)}/job-bookmarks"
       get(path, options)
@@ -37,7 +37,7 @@ module LinkedInOauth2
     # @see http://developer.linkedin.com/documents/job-bookmarks-and-suggestions
     #
     # @macro profile_options
-    # @return [LinkedIn::Mash]
+    # @return [LinkedInOauth2::Mash]
     def job_suggestions(options = {})
       path = "#{profile_path(options)}/suggestions/job-suggestions"
       get(path, options)

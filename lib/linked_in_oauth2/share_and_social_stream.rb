@@ -27,7 +27,7 @@ module LinkedInOauth2
     # @option options [String] :after
     # @option options [String] :before
     # @option options [String] :show-hidden-members
-    # @return [LinkedIn::Mash]
+    # @return [LinkedInOauth2::Mash]
     def network_updates(options={})
       path = "#{profile_path(options)}/network/updates"
       get(path, options)
@@ -55,7 +55,7 @@ module LinkedInOauth2
     # @param [String] update_key a update/update-key representing a
     #   particular network update
     # @macro profile_options
-    # @return [LinkedIn::Mash]
+    # @return [LinkedInOauth2::Mash]
     def share_comments(update_key, options={})
       path = "#{profile_path(options)}/network/updates/key=#{update_key}/update-comments"
       get(path, options)
@@ -72,7 +72,7 @@ module LinkedInOauth2
     # @param [String] update_key a update/update-key representing a
     #   particular network update
     # @macro profile_options
-    # @return [LinkedIn::Mash]
+    # @return [LinkedInOauth2::Mash]
     def share_likes(update_key, options={})
       path = "#{profile_path(options)}/network/updates/key=#{update_key}/likes"
       get(path, options)

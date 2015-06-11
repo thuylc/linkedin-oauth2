@@ -8,7 +8,7 @@ module LinkedInOauth2
       verify_access_token!(access_token)
       @access_token = access_token
 
-      @connection = LinkedIn::Connection.new params: default_params,
+      @connection = LinkedInOauth2::Connection.new params: default_params,
                                              headers: default_headers
 
       initialize_endpoints
@@ -63,13 +63,13 @@ module LinkedInOauth2
     private ##############################################################
 
     def initialize_endpoints
-      @jobs = LinkedIn::Jobs.new(@connection)
-      @people = LinkedIn::People.new(@connection)
-      @search = LinkedIn::Search.new(@connection)
-      @groups = LinkedIn::Groups.new(@connection)
-      @companies = LinkedIn::Companies.new(@connection)
-      @communications = LinkedIn::Communications.new(@connection)
-      @share_and_social_stream = LinkedIn::ShareAndSocialStream.new(@connection)
+      @jobs = LinkedInOauth2::Jobs.new(@connection)
+      @people = LinkedInOauth2::People.new(@connection)
+      @search = LinkedInOauth2::Search.new(@connection)
+      @groups = LinkedInOauth2::Groups.new(@connection)
+      @companies = LinkedInOauth2::Companies.new(@connection)
+      @communications = LinkedInOauth2::Communications.new(@connection)
+      @share_and_social_stream = LinkedInOauth2::ShareAndSocialStream.new(@connection)
     end
 
     def default_params
@@ -83,22 +83,22 @@ module LinkedInOauth2
     end
 
     def verify_access_token!(access_token)
-      if not access_token.is_a? LinkedIn::AccessToken
+      if not access_token.is_a? LinkedInOauth2::AccessToken
         raise no_access_token_error
       end
     end
 
     def parse_access_token(access_token)
-      if access_token.is_a? LinkedIn::AccessToken
+      if access_token.is_a? LinkedInOauth2::AccessToken
         return access_token
       elsif access_token.is_a? String
-        return LinkedIn::AccessToken.new(access_token)
+        return LinkedInOauth2::AccessToken.new(access_token)
       end
     end
 
     def no_access_token_error
-      msg = LinkedIn::ErrorMessages.no_access_token
-      LinkedIn::InvalidRequest.new(msg)
+      msg = LinkedInOauth2::ErrorMessages.no_access_token
+      LinkedInOauth2::InvalidRequest.new(msg)
     end
   end
 end

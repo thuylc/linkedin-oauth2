@@ -9,7 +9,7 @@ describe "OAuth2 Auth Code" do
       config.client_secret = "dummy_client_secret"
     end
   end
-  subject { LinkedIn::OAuth2.new }
+  subject { LinkedInOauth2::OAuth2.new }
 
   def params(key, opts=nil)
     CGI.parse(URI.parse(subject.auth_code_url(opts)).query)[key][0]
@@ -20,10 +20,10 @@ describe "OAuth2 Auth Code" do
       LinkedIn.configure { |config| config.redirect_uri = nil }
     end
 
-    let(:err_msg) { LinkedIn::ErrorMessages.redirect_uri }
+    let(:err_msg) { LinkedInOauth2::ErrorMessages.redirect_uri }
 
     it "Throws an error" do
-      expect {subject.auth_code_url}.to raise_error(LinkedIn::InvalidRequest, err_msg)
+      expect {subject.auth_code_url}.to raise_error(LinkedInOauth2::InvalidRequest, err_msg)
     end
   end
 

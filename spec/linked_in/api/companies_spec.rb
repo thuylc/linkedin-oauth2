@@ -1,8 +1,8 @@
 require "spec_helper"
 
-describe LinkedIn::Companies do
+describe LinkedInOauth2::Companies do
   let(:access_token) {"dummy_access_token"}
-  let(:api) {LinkedIn::API.new(access_token)}
+  let(:api) {LinkedInOauth2::API.new(access_token)}
 
   def stub(url)
     url += "oauth2_access_token=#{access_token}"
@@ -11,17 +11,17 @@ describe LinkedIn::Companies do
 
   it "should be able to view a company profile" do
     stub("https://api.linkedin.com/v1/companies/1586?")
-    expect(api.company(id: 1586)).to be_an_instance_of(LinkedIn::Mash)
+    expect(api.company(id: 1586)).to be_an_instance_of(LinkedInOauth2::Mash)
   end
 
   it "should be able to view a company by universal name" do
     stub("https://api.linkedin.com/v1/companies/universal-name=acme?")
-    expect(api.company(name: "acme")).to be_an_instance_of(LinkedIn::Mash)
+    expect(api.company(name: "acme")).to be_an_instance_of(LinkedInOauth2::Mash)
   end
 
   it "should be able to view a company by e-mail domain" do
     stub("https://api.linkedin.com/v1/companies?email-domain=acme.com&")
-    expect(api.company(domain: "acme.com")).to be_an_instance_of(LinkedIn::Mash)
+    expect(api.company(domain: "acme.com")).to be_an_instance_of(LinkedInOauth2::Mash)
   end
 
   it "should load correct company data" do
@@ -61,7 +61,7 @@ describe LinkedIn::Companies do
     stub("https://api.linkedin.com/v1/companies/123456/historical-follow-statistics?start-timestamp=1378252800000&time-granularity=day&")
     expect(
       api.company_historical_follow_statistics(:id => 123456, :"start-timestamp" => 1378252800000, :"time-granularity" => "day")
-    ).to be_an_instance_of(LinkedIn::Mash)
+    ).to be_an_instance_of(LinkedInOauth2::Mash)
   end
 
   it "should load historical status update statistics" do
@@ -69,6 +69,6 @@ describe LinkedIn::Companies do
     stub_request(:get, url).to_return(body: '{}')
     expect(
       api.company_historical_status_update_statistics(:id => 123456, :"start-timestamp" => 1378252800000, :"time-granularity" => "month", :fields => ['time', 'like-count', 'share-count'])
-    ).to be_an_instance_of(LinkedIn::Mash)
+    ).to be_an_instance_of(LinkedInOauth2::Mash)
   end
 end

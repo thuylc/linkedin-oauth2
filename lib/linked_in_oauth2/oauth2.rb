@@ -1,7 +1,7 @@
 module LinkedInOauth2
-  # The LinkedIn::OAuth2::Client class. Inherits directly from [intreda/oauth2](https://github.com/intridea/oauth2)'s `OAuth2::Client`
+  # The LinkedInOauth2::OAuth2::Client class. Inherits directly from [intreda/oauth2](https://github.com/intridea/oauth2)'s `OAuth2::Client`
   #
-  # LinkedIn::OAuth2 sets the following default options:
+  # LinkedInOauth2::OAuth2 sets the following default options:
   #
   # * site = "https://www.linkedin.com"
   # * token_url = "/uas/oauth2/accessToken"
@@ -39,8 +39,8 @@ module LinkedInOauth2
     # @option options [Boolean] :raise_errors (true) whether or not to
     #   raise an error on malformed responses
     # @yield [builder] The Faraday connection builder
-    def initialize(client_id=LinkedIn.config.client_id,
-                   client_secret=LinkedIn.config.client_secret,
+    def initialize(client_id=LinkedInOauth2.config.client_id,
+                   client_secret=LinkedInOauth2.config.client_secret,
                    options = {}, &block)
 
       if client_id.is_a? Hash
@@ -101,7 +101,7 @@ module LinkedInOauth2
 
     # Returns the access token string for the newly authenticated user.
     #
-    # It also sets the `access_token` field on this LinkedIn::OAuth2
+    # It also sets the `access_token` field on this LinkedInOauth2::OAuth2
     # instance.
     #
     # The required `code`
@@ -111,7 +111,7 @@ module LinkedInOauth2
     # @param [Hash] options
     # @option options [String] :redirect_uri You normally should not have
     #   to pass in the redirect_uri again. If `auth_code_url` was called
-    #   on this LinkedIn::OAuth2 instance, then the `redirect_uri` will
+    #   on this LinkedInOauth2::OAuth2 instance, then the `redirect_uri` will
     #   already be set. This is because the `redirect_uri` in the access
     #   token request must exactly match the `redirect_uri` in the auth
     #   code url.
@@ -126,7 +126,7 @@ module LinkedInOauth2
       end
 
       tok = self.auth_code.get_token(code, options)
-      self.access_token = LinkedIn::AccessToken.new(tok.token,
+      self.access_token = LinkedInOauth2::AccessToken.new(tok.token,
                                                     tok.expires_in,
                                                     tok.expires_at)
       return self.access_token
@@ -142,7 +142,7 @@ module LinkedInOauth2
       custom_options ||= {}
       options = {raise_errors: true}
 
-      @redirect_uri = LinkedIn.config.redirect_uri if @redirect_uri.nil?
+      @redirect_uri = LinkedInOauth2.config.redirect_uri if @redirect_uri.nil?
       options[:redirect_uri] = @redirect_uri
 
       options = options.merge custom_options
@@ -153,11 +153,11 @@ module LinkedInOauth2
       custom_options ||= {}
       options = {raise_errors: true}
 
-      if not LinkedIn.config.redirect_uri.nil?
-        options[:redirect_uri] = LinkedIn.config.redirect_uri
+      if not LinkedInOauth2.config.redirect_uri.nil?
+        options[:redirect_uri] = LinkedInOauth2.config.redirect_uri
       end
-      if not LinkedIn.config.scope.nil?
-        options[:scope] = LinkedIn.config.scope
+      if not LinkedInOauth2.config.scope.nil?
+        options[:scope] = LinkedInOauth2.config.scope
       end
 
       options = options.merge custom_options
@@ -196,9 +196,9 @@ module LinkedInOauth2
     def default_oauth_options(custom_options={})
       custom_options ||= {}
       options = {}
-      options[:site] = LinkedIn.config.site
-      options[:token_url] = LinkedIn.config.token_url
-      options[:authorize_url] = LinkedIn.config.authorize_url
+      options[:site] = LinkedInOauth2.config.site
+      options[:token_url] = LinkedInOauth2.config.token_url
+      options[:authorize_url] = LinkedInOauth2.config.authorize_url
       return options.merge custom_options
     end
 

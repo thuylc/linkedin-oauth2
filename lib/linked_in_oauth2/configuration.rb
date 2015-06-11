@@ -1,7 +1,7 @@
 module LinkedInOauth2
   # Configuration for the LinkedIn gem.
   #
-  #     LinkedIn.configure do |config|
+  #     LinkedInOauth2.configure do |config|
   #       config.client_id     = ENV["LINKEDIN_CLIENT_ID"]
   #       config.client_secret = ENV["LINKEDIN_CLIENT_SECRET"]
   #     end

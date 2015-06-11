@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe LinkedIn::OAuth2 do
+describe LinkedInOauth2::OAuth2 do
   let(:site)          { LinkedIn.config.site }
   let(:token_url)     { LinkedIn.config.token_url }
   let(:authorize_url) { LinkedIn.config.authorize_url }
@@ -10,7 +10,7 @@ describe LinkedIn::OAuth2 do
 
   shared_examples "verify client" do
     it "creates a valid oauth object" do
-      expect(subject).to be_kind_of(LinkedIn::OAuth2)
+      expect(subject).to be_kind_of(LinkedInOauth2::OAuth2)
     end
     it "is a subclass of OAuth2::Client" do
       expect(subject).to be_kind_of(OAuth2::Client)
@@ -58,14 +58,14 @@ describe LinkedIn::OAuth2 do
 
     context "When custom options are passed in as first arg" do
       subject do
-        LinkedIn::OAuth2.new(options)
+        LinkedInOauth2::OAuth2.new(options)
       end
       include_examples "options take"
     end
 
     context "When custom options are passed in" do
       subject do
-        LinkedIn::OAuth2.new(client_id, client_secret, options)
+        LinkedInOauth2::OAuth2.new(client_id, client_secret, options)
       end
       include_examples "options take"
     end
@@ -73,7 +73,7 @@ describe LinkedIn::OAuth2 do
   end
 
   context "When client credentials do not exist" do
-    let(:err_msg) { LinkedIn::ErrorMessages.credentials_missing }
+    let(:err_msg) { LinkedInOauth2::ErrorMessages.credentials_missing }
 
     before(:example) do
       LinkedIn.configure do |config|
@@ -83,12 +83,12 @@ describe LinkedIn::OAuth2 do
     end
 
     it "raises an error" do
-      expect { LinkedIn::OAuth2.new }.to raise_error(LinkedIn::InvalidRequest, err_msg)
+      expect { LinkedInOauth2::OAuth2.new }.to raise_error(LinkedInOauth2::InvalidRequest, err_msg)
     end
   end
 
   context "When client credentials are passed in" do
-    subject { LinkedIn::OAuth2.new(client_id, client_secret) }
+    subject { LinkedInOauth2::OAuth2.new(client_id, client_secret) }
 
     include_examples "verify client"
   end

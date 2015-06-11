@@ -1,8 +1,8 @@
 require "spec_helper"
 
-describe LinkedIn::ShareAndSocialStream do
+describe LinkedInOauth2::ShareAndSocialStream do
   let(:access_token) {"dummy_access_token"}
-  let(:api) {LinkedIn::API.new(access_token)}
+  let(:api) {LinkedInOauth2::API.new(access_token)}
 
   def stub(url)
     url += "oauth2_access_token=#{access_token}"
@@ -11,17 +11,17 @@ describe LinkedIn::ShareAndSocialStream do
 
   it "should be able to view network_updates" do
     stub("https://api.linkedin.com/v1/people/~/network/updates?")
-    expect(api.network_updates).to be_an_instance_of(LinkedIn::Mash)
+    expect(api.network_updates).to be_an_instance_of(LinkedInOauth2::Mash)
   end
 
   it "should be able to view network_update's comments" do
     stub("https://api.linkedin.com/v1/people/~/network/updates/key=network_update_key/update-comments?")
-    expect(api.share_comments("network_update_key")).to be_an_instance_of(LinkedIn::Mash)
+    expect(api.share_comments("network_update_key")).to be_an_instance_of(LinkedInOauth2::Mash)
   end
 
   it "should be able to view network_update's likes" do
     stub("https://api.linkedin.com/v1/people/~/network/updates/key=network_update_key/likes?")
-    expect(api.share_likes("network_update_key")).to be_an_instance_of(LinkedIn::Mash)
+    expect(api.share_likes("network_update_key")).to be_an_instance_of(LinkedInOauth2::Mash)
   end
 
   it "should be able to share a new status" do
@@ -66,8 +66,8 @@ describe LinkedIn::ShareAndSocialStream do
           status: 403
         )
         
-      err_msg = LinkedIn::ErrorMessages.throttled
-      expect {api.add_share(:comment => "Testing, 1, 2, 3")}.to raise_error(LinkedIn::ThrottleError, err_msg)
+      err_msg = LinkedInOauth2::ErrorMessages.throttled
+      expect {api.add_share(:comment => "Testing, 1, 2, 3")}.to raise_error(LinkedInOauth2::ThrottleError, err_msg)
     end
   end
 end

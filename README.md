@@ -35,7 +35,7 @@ Key) and a **Client Secret** (aka Secret Key)
 **[Step 3:](#step-3-using-linkedins-api)** Use an **Access Token** to query the API.
 
 ```ruby
-api = LinkedIn::API.new(access_token)
+api = LinkedInOauth2::API.new(access_token)
 me = api.profile
 ```
 
@@ -94,7 +94,7 @@ You will need to configure the following items:
 ```ruby
 # It's best practice to keep secret credentials out of source code.
 # You can, of course, hardcode dev keys or directly pass them in as the
-# first two arguments of LinkedIn::OAuth2.new
+# first two arguments of LinkedInOauth2::OAuth2.new
 LinkedIn.configure do |config|
   config.client_id     = ENV["LINKEDIN_CLIENT_ID"]
   config.client_secret = ENV["LINKEDIN_CLIENT_SECRET"]
@@ -109,7 +109,7 @@ end
 ### Step 2B: Get Auth Code URL
 
 ```ruby
-oauth = LinkedIn::OAuth2.new
+oauth = LinkedInOauth2::OAuth2.new
 
 url = oauth.auth_code_url
 ```
@@ -121,7 +121,7 @@ LinkedIn sign in box. Once LinkedIn user credentials are entered, the box
 will close and redirect to your redirect url, passing along with it the
 **OAuth code** as the `code` GET param.
 
-Be sure to read the extended documentation around the LinkedIn::OAuth2
+Be sure to read the extended documentation around the LinkedInOauth2::OAuth2
 module for more options you can set.
 
 **Note:** The **OAuth code** only lasts for ~20 seconds!
@@ -136,7 +136,7 @@ access_token = oauth.get_access_token(code)
 
 Now that you have an access token, you can use it to query the API.
 
-The `LinkedIn::OAuth2` inherits from [intreda/oauth2](https://github.com/intridea/oauth2)'s `OAuth2::Client` class. See that gem's [documentation](https://github.com/intridea/oauth2/blob/master/lib/oauth2/client.rb) for more usage examples.
+The `LinkedInOauth2::OAuth2` inherits from [intreda/oauth2](https://github.com/intridea/oauth2)'s `OAuth2::Client` class. See that gem's [documentation](https://github.com/intridea/oauth2/blob/master/lib/oauth2/client.rb) for more usage examples.
 
 ## Step 3: Using LinkedIn's API
 
@@ -153,7 +153,7 @@ yourslef and other users.
 See https://developer.linkedin.com/documents/people
 
 ```ruby
-api = LinkedIn::API.new(access_token)
+api = LinkedInOauth2::API.new(access_token)
 ```
 
 #### Yourself
@@ -188,7 +188,7 @@ me_and_others = api.profile(ids: ["self", "SDmkCxL2ya"])
 #### Connections
 
 ```ruby
-# Takes the same arguments as `LinkedIn::API#profile`
+# Takes the same arguments as `LinkedInOauth2::API#profile`
 my_connections = api.connections
 evans_connections = api.connections(id: "SDmkCxL2ya")
 ```
@@ -196,7 +196,7 @@ evans_connections = api.connections(id: "SDmkCxL2ya")
 #### New Connections
 
 ```ruby
-# Takes the same options argument as `LinkedIn::API#connections`
+# Takes the same options argument as `LinkedInOauth2::API#connections`
 since = Time.new(2014,1,1)
 my_new_connections = api.connections(since)
 evans_new_connections = api.connections(since, id: "SDmkCxL2ya")
@@ -327,7 +327,7 @@ api.send_message("Subject", "Body", ["user1234", "user3456"])
 
 On [RubyDoc here](http://rubydoc.info/github/emorikawa/linkedin-oauth2/frames/file/README.md)
 
-Read the source for [LinkedIn::API](https://github.com/emorikawa/linkedin-oauth2/blob/master/lib/linked_in/api.rb) and [LinkedIn::OAuth2](https://github.com/emorikawa/linkedin-oauth2/blob/master/lib/linked_in/oauth2.rb)
+Read the source for [LinkedInOauth2::API](https://github.com/emorikawa/linkedin-oauth2/blob/master/lib/linked_in/api.rb) and [LinkedInOauth2::OAuth2](https://github.com/emorikawa/linkedin-oauth2/blob/master/lib/linked_in/oauth2.rb)
 
 # Upgrading
 
@@ -354,15 +354,15 @@ See the [README from oauth2-v0.1](https://github.com/emorikawa/linkedin-oauth2/b
   for the signature of API calls or the response hashes
 * Some of the API calls in the oauth2-v0.1 were actually broken in the
   initial OAuth2.0 transition. Those have now been fixed.
-* Instead of a single `LinkedIn::Client` object there are now two separate
+* Instead of a single `LinkedInOauth2::Client` object there are now two separate
   major objects.
 
-  1. `LinkedIn::OAuth2` for performing authentication
-  1. `LinkedIn::API` for accessing the API
+  1. `LinkedInOauth2::OAuth2` for performing authentication
+  1. `LinkedInOauth2::API` for accessing the API
 
 * Requests used to be done through the `OAuth2::AccessToken` object. Now
-  they are done through `LinkedIn::Connection`, which is a thin subclass of
-  `Faraday::Connection`. This is composed into the main `LinkedIn::API`
+  they are done through `LinkedInOauth2::Connection`, which is a thin subclass of
+  `Faraday::Connection`. This is composed into the main `LinkedInOauth2::API`
   object.
 
 ### From hexgnu/linkedin OAuth 1.0
@@ -372,13 +372,13 @@ See the [README from oauth2-v0.1](https://github.com/emorikawa/linkedin-oauth2/b
   look the same as hexgnu/linkedin. You should only have to swap out the
   Authentication and API client construction.
 * There is no more `consumer` object. Everything in OAuth 2.0 is centered
-  around acquiring an **Access Token**. Use the new `LinkedIn::OAuth2`
+  around acquiring an **Access Token**. Use the new `LinkedInOauth2::OAuth2`
   class to acquire the token.
 * There is no more single `client` object. The equivalent is the
-  `LinkedIn::API` object. The `LinkedIn::API` object only needs an access
+  `LinkedInOauth2::API` object. The `LinkedInOauth2::API` object only needs an access
   token to work
 * Requests used to be done through an `OAuth::AccessToken` object. Now
-  they are done through `LinkedIn::Connection`, which is a thin subclass of
+  they are done through `LinkedInOauth2::Connection`, which is a thin subclass of
   `Faraday::Connection`. This means that you have the full power and
   method signatures of Faraday at your disposal.
 

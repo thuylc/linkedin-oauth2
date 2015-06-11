@@ -25,7 +25,7 @@ module LinkedInOauth2
 
 
     def default_url
-      LinkedIn.config.api + LinkedIn.config.api_version
+      LinkedInOauth2.config.api + LinkedInOauth2.config.api_version
     end
   end
 end

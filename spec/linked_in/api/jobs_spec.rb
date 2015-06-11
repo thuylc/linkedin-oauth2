@@ -1,8 +1,8 @@
 require "spec_helper"
 
-describe LinkedIn::Jobs, helpers: :api do
+describe LinkedInOauth2::Jobs, helpers: :api do
   let(:access_token) {"dummy_access_token"}
-  let(:api) {LinkedIn::API.new(access_token)}
+  let(:api) {LinkedInOauth2::API.new(access_token)}
 
   def stub(url)
     url += "oauth2_access_token=#{access_token}"
@@ -11,17 +11,17 @@ describe LinkedIn::Jobs, helpers: :api do
 
   it "should be able to view a job listing" do
     stub("https://api.linkedin.com/v1/jobs/id=1586?")
-    expect(api.job(:id => 1586)).to be_an_instance_of(LinkedIn::Mash)
+    expect(api.job(:id => 1586)).to be_an_instance_of(LinkedInOauth2::Mash)
   end
 
   it "should be able to view its job bookmarks" do
     stub("https://api.linkedin.com/v1/people/~/job-bookmarks?")
-    expect(api.job_bookmarks).to be_an_instance_of(LinkedIn::Mash)
+    expect(api.job_bookmarks).to be_an_instance_of(LinkedInOauth2::Mash)
   end
 
   it "should be able to view its job suggestion" do
     stub("https://api.linkedin.com/v1/people/~/suggestions/job-suggestions?")
-    expect(api.job_suggestions).to be_an_instance_of(LinkedIn::Mash)
+    expect(api.job_suggestions).to be_an_instance_of(LinkedInOauth2::Mash)
   end
 
   it "should be able to add a bookmark" do

@@ -9,15 +9,15 @@ describe LinkedIn do
     expect { require 'linkedin-oauth2' }.not_to raise_error
   end
 
-  describe LinkedIn::OAuth2 do
+  describe LinkedInOauth2::OAuth2 do
     it "is a class" do
-      expect(LinkedIn::OAuth2).to be_a Class
+      expect(LinkedInOauth2::OAuth2).to be_a Class
     end
   end
 
-  describe LinkedIn::API do
+  describe LinkedInOauth2::API do
     it "is a class" do
-      expect(LinkedIn::API).to be_a Class
+      expect(LinkedInOauth2::API).to be_a Class
     end
   end
 end
