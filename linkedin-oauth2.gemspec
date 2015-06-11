@@ -1,7 +1,7 @@
 # encoding: utf-8
 # Follow http://guides.rubygems.org/ best practices
 
-require File.expand_path("../lib/linked_in/version", __FILE__)
+require File.expand_path("../lib/linked_in_oauth2/version", __FILE__)
 
 Gem::Specification.new do |gem|
   gem.name        = "linkedin-oauth2"
