@@ -38,7 +38,7 @@ require "linked_in_oauth2/share_and_social_stream"
 # It composes in all of the endpoints
 require "linked_in_oauth2/api"
 
-module LinkedIn
+module LinkedInOauth2
   @config = Configuration.new
 
   class << self
