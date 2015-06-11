@@ -6,7 +6,7 @@ require File.expand_path("../lib/linked_in_oauth2/version", __FILE__)
 Gem::Specification.new do |gem|
   gem.name        = "linkedin-oauth2"
   gem.email       = ["evan@evanmorikawa.com"]
-  gem.version     = LinkedIn::VERSION
+  gem.version     = LinkedInOauth2::VERSION
   gem.authors     = ["Evan Morikawa"]
   gem.summary     = "Ruby wrapper for the LinkedIn OAuth 2.0 API"
   gem.license     = "MIT"
