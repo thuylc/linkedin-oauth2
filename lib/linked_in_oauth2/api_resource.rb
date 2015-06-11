@@ -1,4 +1,4 @@
-module LinkedIn
+module LinkedInOauth2
   # The abstract class all API endpoints inherit from. Providers common
   # builder methods across all endpoints.
   #

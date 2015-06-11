@@ -1,4 +1,4 @@
-module LinkedIn
+module LinkedInOauth2
   # Configuration for the LinkedIn gem.
   #
   #     LinkedIn.configure do |config|

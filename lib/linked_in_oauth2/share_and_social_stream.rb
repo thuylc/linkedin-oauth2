@@ -1,4 +1,4 @@
-module LinkedIn
+module LinkedInOauth2
   # Share and Social Stream APIs
   #
   # @see http://developer.linkedin.com/documents/share-and-social-stream

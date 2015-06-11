@@ -1,4 +1,4 @@
-module LinkedIn
+module LinkedInOauth2
 
   # Raised when users call a deprecated function
   class Deprecated < StandardError; end

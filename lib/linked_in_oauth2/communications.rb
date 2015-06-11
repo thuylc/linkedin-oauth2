@@ -1,4 +1,4 @@
-module LinkedIn
+module LinkedInOauth2
   # Communications APIs
   #
   # @see http://developer.linkedin.com/documents/communications

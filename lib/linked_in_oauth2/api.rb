@@ -1,4 +1,4 @@
-module LinkedIn
+module LinkedInOauth2
   class API
 
     attr_accessor :access_token

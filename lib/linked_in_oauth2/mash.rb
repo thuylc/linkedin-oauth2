@@ -1,4 +1,4 @@
-module LinkedIn
+module LinkedInOauth2
   # Coerces LinkedIn JSON to a nice Ruby hash
   # LinkedIn::Mash inherits from Hashie::Mash
   class Mash < ::Hashie::Mash

@@ -1,4 +1,4 @@
-module LinkedIn
+module LinkedInOauth2
   # Used to perform requests against LinkedIn's API.
   class Connection < ::Faraday::Connection
 

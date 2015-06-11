@@ -1,4 +1,4 @@
-module LinkedIn
+module LinkedInOauth2
   # Search APIs
   #
   # @see https://developer.linkedin.com/documents/people-search-api

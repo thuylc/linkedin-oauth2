@@ -1,4 +1,4 @@
-module LinkedIn
+module LinkedInOauth2
   # The LinkedIn::OAuth2::Client class. Inherits directly from [intreda/oauth2](https://github.com/intridea/oauth2)'s `OAuth2::Client`
   #
   # LinkedIn::OAuth2 sets the following default options:

@@ -1,5 +1,5 @@
 require 'time'
-module LinkedIn
+module LinkedInOauth2
   # People APIs
   #
   # @see http://developer.linkedin.com/documents/people People API

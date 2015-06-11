@@ -1,4 +1,4 @@
-module LinkedIn
+module LinkedInOauth2
   # Groups API
   #
   # @see http://developer.linkedin.com/documents/groups-api Groups API

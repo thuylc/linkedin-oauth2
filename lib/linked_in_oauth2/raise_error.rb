@@ -1,6 +1,6 @@
 require 'faraday'
 
-module LinkedIn
+module LinkedInOauth2
   class RaiseError < Faraday::Response::RaiseError
     def on_complete(response)
       status_code = response.status.to_i

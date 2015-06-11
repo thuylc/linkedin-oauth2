@@ -1,4 +1,4 @@
-module LinkedIn
+module LinkedInOauth2
   # Jobs API
   #
   # @see http://developer.linkedin.com/documents/job-lookup-api-and-fields Job Lookup API and Fields

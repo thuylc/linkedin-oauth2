@@ -1,4 +1,4 @@
-module LinkedIn
+module LinkedInOauth2
   # Companies API
   #
   # @see http://developer.linkedin.com/documents/companies Companies API
